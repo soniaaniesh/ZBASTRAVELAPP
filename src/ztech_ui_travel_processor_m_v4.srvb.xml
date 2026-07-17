@@ -4,7 +4,7 @@
   <asx:values>
    <SRVB>
     <METADATA>
-     <NAME>ZTECH_UI_TRAVEL_PROCESSOR_M_V4</NAME>
+     <NAME>ZBAS_UI_TRAVEL_PROCESSOR_M_V4</NAME>
      <TYPE>SRVB/SVB</TYPE>
      <DESCRIPTION>V4</DESCRIPTION>
      <LANGUAGE>EN</LANGUAGE>
@@ -13,21 +13,21 @@
     </METADATA>
     <CONTENT>
      <BIND_TYPE_IMPL>
-      <NAME>ZTECH_UI_TRAVEL_PROCESSOR_M_V4</NAME>
+      <NAME>ZBAS_UI_TRAVEL_PROCESSOR_M_V4</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
      <BIND_TYPE_VERSION>V4</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
-       <SERVICE_NAME>ZRAM_UI_TRAVEL_PROCESSOR_M</SERVICE_NAME>
+       <SERVICE_NAME>ZBAS_UI_TRAVEL_PROCESSOR_M</SERVICE_NAME>
        <SERVICE_CONTENT>
         <item>
          <SERVICE_VERSION>0001</SERVICE_VERSION>
          <RELEASE_STATE>NOT_RELEASED</RELEASE_STATE>
          <SRVD_REF>
-          <URI>/sap/bc/adt/ddic/srvd/sources/zram_ui_travel_processor_m</URI>
+          <URI>/sap/bc/adt/ddic/srvd/sources/zbas_ui_travel_processor_m</URI>
           <TYPE>SRVD/SRV</TYPE>
-          <NAME>ZRAM_UI_TRAVEL_PROCESSOR_M</NAME>
+          <NAME>ZBAS_UI_TRAVEL_PROCESSOR_M</NAME>
          </SRVD_REF>
          <BIND_TYPE_DATA>
           <CONTENT>
