@@ -1,0 +1,107 @@
+@Metadata.layer: #CORE
+
+@Search.searchable: true
+
+@UI.headerInfo: {
+    typeName: 'Travel',
+    typeNamePlural: 'Travels',
+    typeImageUrl: 'sap-icon://flight',
+    title: {
+        type: #STANDARD,
+        value: 'TravelID'
+    },
+    description: {
+        type: #STANDARD,
+        value: 'Description'
+    }
+}
+
+@UI.presentationVariant: [ { qualifier: 'PV_ALL',
+                             text: 'All',
+                             sortOrder: [ { by: 'TravelID', direction: #DESC } ],
+                             groupBy: [ 'AgencyID' ],
+                             requestAtLeast: [ 'TravelID', 'OverallStatus' ],
+                             visualizations: [ { type: #AS_LINEITEM } ],
+                             selectionFieldsQualifier: 'All' },
+                           { qualifier: 'PV_Accepted',
+                             text: 'Accepted',
+                             maxItems: 50,
+                             sortOrder: [ { by: 'TravelID', direction: #ASC } ],
+                             groupBy: [ 'CustomerID' ],
+                             requestAtLeast: [ 'TravelID', 'OverallStatus' ],
+                             visualizations: [ { type: #AS_LINEITEM, qualifier: 'Accepted' } ],
+                             selectionFieldsQualifier: 'Accepted' } ]
+
+@UI.selectionPresentationVariant: [ { qualifier: 'SPV_All',
+                                      text: 'All',
+                                      selectionVariantQualifier: 'All',
+                                      presentationVariantQualifier: 'PV_ALL' },
+                                    { qualifier: 'SPV_Accepted',
+                                      text: 'Accepted',
+                                      selectionVariantQualifier: 'Accepted',
+                                      presentationVariantQualifier: 'PV_Accepted' } ]
+
+@UI.selectionVariant: [ { qualifier: 'All', text: 'All' },
+                        { qualifier: 'Open', text: 'Open', filter: 'OverallStatus EQ "O"' },
+                        { qualifier: 'Accepted', text: 'Accepted', filter: 'OverallStatus EQ "A"' } ]
+
+annotate entity ZRAM_C_TRAVEL_PROCESSSOR_M with
+
+{
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.7
+  @UI.facet: [ { purpose: #HEADER, position: 10, type: #DATAPOINT_REFERENCE, targetQualifier: 'TotalPrice' },
+               { purpose: #HEADER, position: 20, type: #DATAPOINT_REFERENCE, targetQualifier: 'Status'     } ,
+               { purpose: #STANDARD,position: 10,type: #IDENTIFICATION_REFERENCE,label: 'Travel' },
+               { purpose: #STANDARD,position: 20, type: #LINEITEM_REFERENCE,label: 'Bookings',targetElement: '_Booking' }]
+  @UI.lineItem: [ { position: 10, qualifier: 'Accepted' } ]
+  @UI.identification: [{ position: 10 }]
+  TravelID;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: '/DMO/I_Agency', element: 'AgencyID' } } ]
+  @Search.defaultSearchElement: true
+  @UI.lineItem: [ { position: 20 } ]
+  @UI.selectionField: [ { position: 10 } ]
+  @UI.identification: [{ position: 20 }]
+  AgencyID;
+  // AgencyName;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: '/DMO/I_Customer', element: 'CustomerID' } } ]
+  @Search.defaultSearchElement: true
+  @UI.lineItem: [ { position: 30, qualifier: 'Accepted' } ]
+  @UI.selectionField: [ { position: 20 } ]
+  @UI.identification: [{ position: 30 }]
+
+  CustomerID;
+  // CustomerName;
+
+  @UI.lineItem: [ { position: 40, qualifier: 'Accepted' } ]
+  @UI.identification: [{ position: 40 }]
+  BeginDate;
+
+  @UI.lineItem: [ { position: 50 } ]
+  @UI.identification: [{ position: 50 }]
+  EndDate;
+
+  // BookingFee;
+
+  @UI.dataPoint: { qualifier: 'TotalPrice', title: 'Total Price' }
+  @UI.lineItem: [ { position: 60 } ]
+  @UI.identification: [{ position: 60 }]
+  TotalPrice;
+  @UI.identification: [{ position: 70 }]
+  CurrencyCode;
+  @UI.identification: [{ position: 80 }]
+  Description;
+
+  @Consumption.valueHelpDefinition: [ { entity: { name: '/DMO/I_Overall_Status_VH', element: 'OverallStatus' } } ]
+  @Search.defaultSearchElement: true
+  @UI.dataPoint: { qualifier: 'Status', title: 'Status' }
+  @UI.lineItem: [ { position: 70 } ]
+  @UI.selectionField: [ { position: 30 } ]
+  @UI.identification: [{ position: 90 }]
+  //  @UI.textArrangement: #TEXT_ONLY
+  OverallStatus;
+  // Text;
+  // LastChangedAt;
+}

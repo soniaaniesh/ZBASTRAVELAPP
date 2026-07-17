@@ -1,0 +1,28 @@
+@Metadata.layer: #CORE
+annotate entity ZRAM_C_Booking_Processor_M
+    with 
+{
+//    TravelID;
+  @UI.lineItem: [{ position: 10 }]   
+    BookingID;
+  @UI.lineItem: [ { position: 20 } ]    
+    BookingDate;
+ @UI.lineItem: [{ position: 30 }]    
+    CustomerID;
+//    CustomerName;
+  @UI.lineItem: [{ position: 40 }]    
+    CarrierID;
+//    CarrierName;
+  @UI.lineItem: [{ position: 50 }]
+    FlightDate;
+ @UI.lineItem: [{ position: 60 }]    
+    FlightPrice;
+  @UI.lineItem: [{ position: 70 }]    
+    CurrencyCode;
+ @UI.lineItem: [{ position: 80 }]    
+    BookingStatus;
+//    BookingStatusText;
+//    LastChangedAt;
+
+    
+}
