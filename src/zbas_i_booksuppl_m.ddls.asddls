@@ -2,7 +2,7 @@
 @EndUserText.label: 'Booking Supplement View - CDS data model'
 
 define view entity ZBAS_I_BookSuppl_M 
-  as select from zbas_booksuppl_m as BookingSupplement
+  as select from zBAS_booksuppl_m as BookingSupplement
 
   association        to parent ZBAS_I_Booking_M  as _Booking     on  $projection.travel_id    = _Booking.travel_id
                                                                  and $projection.booking_id   = _Booking.booking_id
